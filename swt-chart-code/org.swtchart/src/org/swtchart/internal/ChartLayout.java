@@ -93,7 +93,7 @@ public class ChartLayout extends Layout {
     private int rightAxisOffset = 0;
 
     /** the margin */
-    public static final int MARGIN = 5;
+    public static final int MARGIN = 0;
 
     /** the padding */
     public static final int PADDING = 5;

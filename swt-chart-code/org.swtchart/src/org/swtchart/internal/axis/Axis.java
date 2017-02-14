@@ -28,7 +28,7 @@ import org.swtchart.internal.series.SeriesSet;
 public class Axis implements IAxis {
 
     /** the margin in pixels */
-    public final static int MARGIN = 5;
+    public final static int MARGIN = 0;
 
     /** the default minimum value of range */
     public final static double DEFAULT_MIN = 0d;
