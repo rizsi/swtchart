@@ -900,11 +900,20 @@ public class AxisTickLabels implements PaintListener {
      *            the graphics context
      */
     private void drawXTick(GC gc) {
-        int offset = axis.getTick().getAxisTickMarks().getBounds().x;
+    	Rectangle r=axis.getTick().getAxisTickMarks().getBounds();
+        int offset = r.x;
 
         // draw tick labels
         gc.setFont(axis.getTick().getFont());
         int angle = axis.getTick().getTickLabelAngle();
+        Rectangle titleRect=new Rectangle(0, 0, 0, 0);
+        String title=axis.getTick().getTickTitle();
+        if(title!=null&&!("".equals(title.trim())))
+        {
+        	Point extent= gc.textExtent(title);
+        	titleRect=new Rectangle(bounds.x + r.x+r.width-extent.x, bounds.y, extent.x, extent.y);
+            gc.drawText(title, titleRect.x, titleRect.y);
+        }
         for (int i = 0; i < tickLabelPositions.size(); i++) {
             if (axis.isValidCategoryAxis() || tickVisibilities.get(i) == true) {
                 String text = tickLabels.get(i);
@@ -912,7 +921,11 @@ public class AxisTickLabels implements PaintListener {
                 int textHeight = gc.textExtent(text).y;
                 if (angle == 0) {
                     int x = (int) (tickLabelPositions.get(i) - textWidth / 2d + offset);
-                    gc.drawText(text, bounds.x + x, bounds.y);
+                    Rectangle tickRect=new Rectangle(bounds.x + x, bounds.y, textWidth, textHeight);
+                    if(!titleRect.intersects(tickRect))
+                    {
+                    	gc.drawText(text, tickRect.x, tickRect.y);
+                    }
                     continue;
                 }
 
@@ -971,6 +984,16 @@ public class AxisTickLabels implements PaintListener {
     private void drawYTick(GC gc) {
         int margin = Axis.MARGIN + AxisTickMarks.TICK_LENGTH;
 
+        Rectangle titleRect=new Rectangle(0, 0, 0, 0);
+    	Rectangle r=axis.getTick().getAxisTickMarks().getBounds();
+        String title=axis.getTick().getTickTitle();
+        if(title!=null&&!("".equals(title.trim())))
+        {
+        	Point extent= gc.textExtent(title);
+        	titleRect=new Rectangle(bounds.x, bounds.y+r.y, extent.y, extent.x);
+            drawRotatedText(gc, title, titleRect.x
+            		, titleRect.y+titleRect.height, 90);
+        }
         // draw tick labels
         gc.setFont(axis.getTick().getFont());
         int figureHeight = gc.textExtent("dummy").y;
@@ -987,7 +1010,11 @@ public class AxisTickLabels implements PaintListener {
                 }
                 int y = (int) (bounds.height - 1 - tickLabelPositions.get(i)
                         - figureHeight / 2.0 - margin);
-                gc.drawText(text, bounds.x + x, bounds.y + y);
+                Rectangle labelRect=new Rectangle(bounds.x + x, bounds.y + y, bounds.width, figureHeight);
+                if(!titleRect.intersects(labelRect))
+				{
+					gc.drawText(text, bounds.x + x, bounds.y + y);
+				}
             }
         }
     }

@@ -131,4 +131,12 @@ public interface IAxisTick {
      * @return the tick label values
      */
     double[] getTickLabelValues();
+    
+    /**
+     * Get the label written onto the ticks.
+     * @return
+     */
+    String getTickTitle();
+    
+    void setTickTitle(String title);
 }

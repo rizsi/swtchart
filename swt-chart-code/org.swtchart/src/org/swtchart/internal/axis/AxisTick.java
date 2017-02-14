@@ -46,6 +46,9 @@ public class AxisTick implements IAxisTick {
     /** the default tick mark step hint */
     private static final int DEFAULT_TICK_MARK_STEP_HINT = 64;
 
+    /** the title of the axis written onto the ticks. */
+    private String title;
+
     /**
      * Constructor.
      *
@@ -245,5 +248,14 @@ public class AxisTick implements IAxisTick {
         axisTickLabels.updateLayoutData();
         axisTickMarks.updateLayoutData();
     }
+	@Override
+	public String getTickTitle() {
+		return title;
+	}
+
+	@Override
+	public void setTickTitle(String title) {
+		this.title=title;
+	}
 
 }
