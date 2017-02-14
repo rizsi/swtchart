@@ -1,2 +1,6 @@
 /swt-chart-code/.svn/
+/swt-chart-code/org.swtchart/.gitignore
+/swt-chart-code/org.swtchart/bin/
+/swt-chart-code/org.swtchart.ext/bin/
+/swt-chart-code/org.swtchart.examples.ext/bin/
 
