@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SWTChart Extension Plug-in
-Bundle-SymbolicName: org.swtchart.ext
+Bundle-SymbolicName: org.swtchart.ext.rizsi
 Bundle-Version: 0.10.0.qualifier
 Require-Bundle: org.eclipse.jface,
  org.swtchart
