@@ -248,12 +248,10 @@ public class AxisTick implements IAxisTick {
         axisTickLabels.updateLayoutData();
         axisTickMarks.updateLayoutData();
     }
-	@Override
 	public String getTickTitle() {
 		return title;
 	}
 
-	@Override
 	public void setTickTitle(String title) {
 		this.title=title;
 	}
